@@ -4,7 +4,7 @@ namespace onli\tasks;
 
 include 'include/database.php';
 
-$db = new Database();
+$db = Database::getInstance();
 $db->setupDB();
 
 include 'include/router.php';

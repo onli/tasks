@@ -5,16 +5,33 @@ namespace onli\tasks;
 
 use \PDO;
 
+class Singleton
+{
+    protected static self|null $instance = null;
 
-class Database {
+    final private function __construct(){}
+    final protected function __clone(){}
+    final protected function __wakeup(){}
 
+    public static function getInstance(): static
+    {
+        if (static::$instance === null) {
+            static::$instance = new static;
+        }
+
+        return static::$instance;
+    }
+}
+
+
+class Database extends Singleton {
+	
 	private $db; 
-
-	function __construct() {
-		$this->db = new PDO('sqlite:tasks.db','', '');
-	}
+	
 
 	function setupDB() {
+		$this->db = new PDO('sqlite:tasks.db','', '');
+		
 		$query = 'CREATE TABLE IF NOT EXISTS users (id integer PRIMARY KEY AUTOINCREMENT, name TEXT, role TEXT, email TEXT)'; 
 		$stmt = $this->db->prepare($query);
 		$stmt->execute();

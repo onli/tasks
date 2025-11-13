@@ -31,7 +31,7 @@ class Router {
 				break;
 			
 			case 'do_create':
-				$db = new Database();
+				$db = Database::getInstance();
 				$db->createTask($_POST['title'], $_POST['description'], $_POST['target_date'], $_POST['category'], $_POST['priority']);  
 				
 				header("Location: /tasks");
