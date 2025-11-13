@@ -6,6 +6,7 @@
 namespace onli\tasks;
 
 include 'include/database.php';
+require_once 'vendor/autoload.php';
 
 $db = Database::getInstance();
 $db->setupDB();

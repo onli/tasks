@@ -43,14 +43,14 @@ class Router {
 			default:
 				$db = Database::getInstance();
 				$tasks = $db->getTasks();
-				echo '<ol>';
-				foreach($tasks as $task) {
-					echo '<li>';
-					echo $task['title'];
-					echo '</li>';
-				}
-				echo '</ol>';
-				echo '<a href="?page=create">New Tasks</a>';
+				
+				$loader = new \Twig\Loader\FilesystemLoader('templates/');
+				$twig = new \Twig\Environment($loader, [
+					'cache' => 'compilation_cache',
+				]);
+
+				echo $twig->render('index.html.twig', ['tasks' => $tasks]);
+				
 				break;
 		}
 		
