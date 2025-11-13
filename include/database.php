@@ -5,6 +5,10 @@ namespace onli\tasks;
 
 use \PDO;
 
+// Simple Database wrapper. Set up a sqlite database and provide helper functions
+// to enter and get data. NOTE: Ususally would be combined with classes for the 
+// types, like a Task class
+
 class Singleton
 {
     protected static self|null $instance = null;
@@ -54,5 +58,12 @@ class Database extends Singleton {
 		$stmt->bindParam(6, $priority); 
 		// $stmt->bindParam(7, 0);  // # TODO: Link to user currently logged in
 		$stmt->execute();
+	}
+	
+	function getTasks() {
+		$query = 'SELECT * FROM tasks'; 
+		$stmt = $this->db->prepare($query);
+		$stmt->execute();
+		return $stmt;
 	}
 }

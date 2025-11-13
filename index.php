@@ -1,5 +1,8 @@
 <?php
 
+
+// Main file of the example project. Starts database and router calls
+
 namespace onli\tasks;
 
 include 'include/database.php';

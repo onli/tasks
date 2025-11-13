@@ -3,6 +3,9 @@
 namespace onli\tasks;
 
 
+// Simple Router example. Switches over the page parameter to emit
+// the target pages.
+
 class Router {
 	
 	
@@ -38,6 +41,15 @@ class Router {
 				die();
 			
 			default:
+				$db = Database::getInstance();
+				$tasks = $db->getTasks();
+				echo '<ol>';
+				foreach($tasks as $task) {
+					echo '<li>';
+					echo $task['title'];
+					echo '</li>';
+				}
+				echo '</ol>';
 				echo '<a href="?page=create">New Tasks</a>';
 				break;
 		}
