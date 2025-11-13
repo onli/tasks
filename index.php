@@ -4,7 +4,9 @@ namespace onli\tasks;
 
 include 'include/database.php';
 
-echo 'tasks';
-
 $db = new Database();
 $db->setupDB();
+
+include 'include/router.php';
+$router = new Router();
+$router->servePage();
